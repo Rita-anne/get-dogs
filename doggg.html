@@ -4,43 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Picture on Button Click</title>
+    <title>get dog</title>
     <style>
-        .container-img {
+        #myImage {
             text-align: center;
         }
 
-        img {
+        #img {
             max-width: 100%;
             height: auto;
         }
-
-        .changeButton {
-            background-color: orangered;
-            text-align: center;
+        #myImage img{
+            width: 20%;
+            height: 60%;
         }
-
-        .text {
+           
+        span {
             color: white;
             padding: 100px;
         }
 
-        .button {
-            text-align: center;
+        #change {
+             background-color: orangered;
+        }
+
+        #button {
+            border-color: white;
+        }
+        #body {
+            background-color: blanchedalmond;
+        }
+        #all{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
+<div id="all">
+    <div id="myImage">
 
-    <div class="container-img">
-        <img id="myImage" src="https://random.dog/65bf4e16-3d69-4115-b116-f1bda1b9de6b.jpg" alt="Placeholder Image"
-            width="300px">
     </div>
     <div class="button">
-        <button class="changeButton"> <span class="text">Get Dog</span></button>
+        <button id="change"> <span>Get Dog</span></button>
+    </div>
     </div>
     <script>
+const change=document.getElementById("change")
+const image=document.getElementById("myImage")
+
+change.addEventListener('click',()=>{
+    fetch('https://random.dog/woof.json')
+    .then(Response=>Response.json())
+    .then((data)=> 
+         
+        image.innerHTML=`<img src="${data.url}">`)
+    .catch(data=>console.log(data))
+})
 
     </script>
 
